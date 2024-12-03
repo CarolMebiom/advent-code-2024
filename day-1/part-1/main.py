@@ -1,32 +1,11 @@
-
-def split_numbers(input, list_a, list_b):
-    try:
-        for i in range(0, len(input)):
-            input_list = input[i].split()
-            list_a.append(int(input_list[0]))
-            list_b.append(int(input_list[1]))
-    except KeyError:
-        raise KeyError("Input must be a list of strings")
-    except TypeError:
-        raise TypeError("Input must be a list of strings")
-    except AttributeError:
-        raise AttributeError("A and B must be a list of strings")
-
-def select_small_number(list_a):
-    try:
-        small_number = min(list_a)
-        small_number_index = list_a.index(small_number)
-        list_a.pop(small_number_index)
-        return small_number
-    except AttributeError:
-        raise AttributeError("Input must be a list of integers")
-
+from part_1 import select_small_number, split_numbers
+from part_2 import times_repeated
 
 def main():
     a = []
     b = []
     difference_list = []
-    with open('input.txt', 'r') as f:
+    with open('part-1/input.txt', 'r') as f:
         split_numbers(f.readlines(), a, b)
 
     if len(a) != len(b):
@@ -39,8 +18,29 @@ def main():
             difference = abs(small_number_b - small_number_a)
             difference_list.append(difference)
     
-    print(sum(difference_list))
     
+    similarity_list = []
+    a = []
+    b = []
+    sum_similarity = 0
+    with open('part-1/input.txt', 'r') as f:
+        split_numbers(f.readlines(), a, b)
+        
+    for i in a:
+        similarity_list.append(times_repeated(i, b))
+
+    if len(a) != len(similarity_list):
+        print("Invalid input")
+    
+    else:
+        for i in range(0, len(a)):
+            sum_similarity += a[i] * similarity_list[i]
+    
+    print(sum_similarity)
+
+        
+    
+
 
 
 

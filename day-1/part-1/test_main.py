@@ -1,7 +1,8 @@
 import unittest
-from main import split_numbers, select_small_number
+from part_1 import split_numbers, select_small_number
+from part_2 import times_repeated
 
-class TestMain(unittest.TestCase):
+class TestPart_1(unittest.TestCase):
     def test_split_numbers(self):
         a = []
         b = []
@@ -41,7 +42,17 @@ class TestMain(unittest.TestCase):
     def test_select_small_number_type_error(self):
         a = 'a'
         self.assertRaises(AttributeError, select_small_number, a)
+
     
+class TestPart_2(unittest.TestCase):
+    def test_times_repeated(self):
+        a = 3
+        b = [3,3,4]
+        c = 1
+        d = "d"
+        self.assertEqual(times_repeated(a, b), 2)
+        self.assertEqual(times_repeated(c,b), 0)
+        self.assertRaises(ValueError, times_repeated, d, b)
 
 if __name__ == "__main__":
     unittest.main()
