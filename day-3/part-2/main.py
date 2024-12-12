@@ -25,11 +25,9 @@ for i in range(0, len(test_str)):
 all_sum = 0
 
 i = 0
-cont = True
 while i < len(new_test_str):
     string_t_search = new_test_str[i:]
     if current == 1:
-        print("IN CURRENT 1")
         match_dont = re.search(regex_dont, string_t_search)
         if match_dont is None:
             at_moment_test = re.findall(regex_mul, string_t_search)
@@ -42,7 +40,6 @@ while i < len(new_test_str):
             f = match_dont.start()
             l = match_dont.end()
             print(f)
-            print("IN ELSE")
             at_moment_test = re.findall(regex_mul, string_t_search[:f])
             for j in at_moment_test:
                 tup = j.strip("mul")
@@ -52,13 +49,11 @@ while i < len(new_test_str):
             current = 0
     
     elif current == 0:
-        print("IN CURRENT 0")
         match_do = re.search(regex_do, string_t_search)
         if match_do is None:
             i = len(new_test_str)
         else:
             l = match_do.end()
-            print("IN ELSE")
             i = l + i
             current = 1
     
